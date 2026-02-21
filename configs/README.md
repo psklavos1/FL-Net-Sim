@@ -1,4 +1,4 @@
-# Assets: Configuration Samples
+# Config Samples
 
 This directory contains sample configurations for all supported settings to enable rapid prototyping.
 
