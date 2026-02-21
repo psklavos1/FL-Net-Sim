@@ -78,45 +78,6 @@ In addition to the DCTCP example, you can find other adapted examples in `exampl
 Meanwhile, Unison also supports manual partition, and you can find a minimal example in `src/mtp/examples/simple-mtp.cc`
 For hybrid simulation with MPI, you can find a minimal example in `src/mpi/examples/simple-hybrid.cc`.
 
-## Federated Learning Scenarios (silo / wifi / lte)
-
-This repo includes three FL scenarios under `scratch/flsim`: `silo`, `wifi`, and `lte`.
-They share the same JSON schema style for consistency: `scenario`, `reproducibility`, `sim`, `network`, `presets`, `fl_clients`, `fl_traffic`, `metrics`.
-
-Run them like this:
-
-```shell
-./ns3 run "scratch/flsim/silo"
-./ns3 run "scratch/flsim/wifi"
-./ns3 run "scratch/flsim/lte"
-```
-
-### LTE-specific notes (important)
-
-1. **Base stations (eNBs) and client placement**
-   - `network.enbs[]` defines LTE base station positions.
-   - `network.clients[i].position` pins a client to a fixed location.
-   - If a client has no explicit position, it is placed around `network.clients[i].enb` using `radius_m`.
-   - **Attachment is automatic**: clients connect to the strongest signal, not necessarily the `enb` index in JSON.
-
-2. **UDP vs TCP in `fl_traffic`**
-   - `fl_traffic.transport` controls the actual traffic type.
-   - If `transport` is `"udp"` (default), the TCP block is **ignored**.
-   - If `transport` is `"tcp"`, the `fl_traffic.tcp` settings are used.
-
-   Why default to UDP?
-   - UDP keeps the model-transfer timing simple and fast, which is useful for repeatable FL rounds.
-   - TCP is fully supported when you need congestion control or realism.
-
-### LTE configuration fields (in addition to the shared FL fields)
-
-These are read from `scratch/flsim/configs/lte.json`:
-
-- `network.channel`: pathloss model and radio propagation parameters
-- `presets.cell_quality_presets`: LTE bandwidth and eNB transmit power
-- `network.enbs[].cell_quality`: selects a preset per base station
-- `network.clients[]`: placement, mobility, and intended cell region
-
 We also provide three detailed fat-tree examples for Unison, traditional MPI parallel simulation and hybrid simulation:
 
 | Name | Location | Required configuration flags | Running commands |
