@@ -255,4 +255,4 @@ See `experiments/README.md` and each experiment README for setup and outputs.
 
 ## License
 
-Apache License 2.0. See `LICENSE`.
+GNU General Public License v2.0 (GPL-2.0). See `LICENSE`.
