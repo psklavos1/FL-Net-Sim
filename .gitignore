@@ -1,0 +1,102 @@
+# ========================
+# General 
+# ========================
+__pycache__
+.pytest_cache
+.hydra
+.vscode
+.ipynb_checkpoints
+notes.txt
+# ========================
+# Experiments / Paper Artifacts
+# ========================
+experiments/*/outputs/*
+!experiments/*/outputs/
+!experiments/*/outputs/.gitkeep
+experiments/*/outputs/tables/*
+!experiments/*/outputs/tables/
+!experiments/*/outputs/tables/.gitkeep
+experiments/*/outputs/figures/*
+!experiments/*/outputs/figures/
+!experiments/*/outputs/figures/.gitkeep
+
+paper_artifacts/*
+!paper_artifacts/
+!paper_artifacts/figures/
+!paper_artifacts/figures/.gitkeep
+!paper_artifacts/tables/
+!paper_artifacts/tables/.gitkeep
+!paper_artifacts/runs/
+!paper_artifacts/runs/.gitkeep
+# ========================
+# Logs (keep folder, ignore contents)
+# ========================
+logs/*
+!logs/
+!logs/.gitkeep
+ns3/flsim_records/*
+!ns3/flsim_records/
+!ns3/flsim_records/.gitkeep
+# ========================
+# Flower 
+# ========================
+fl/src/dataset/data
+# ========================
+# NS3
+# ========================
+
+# === Personal Configs ===
+.editorconfig
+.clang-format
+.waf*
+
+# === Patch & Diff Files ===
+*.diff
+*.orig
+*.patch
+*.rej
+
+# === Compiled/Object Files ===
+*.o
+*.pyc
+*.pyo
+
+# === Simulation Output Files ===
+*.cwnd
+*.dat
+*.log
+*.mob
+*.pcap
+*.plt
+*.routes
+*.tr
+animation
+[D|U]l[A-Z][a-z]*Stats.txt
+
+# === Editor/Backup Files ===
+\#*#
+~*
+
+# === Python Test Output ===
+testpy-output
+
+# === PyBindGen Cache ===
+bindings/python/pybindgen/
+
+# === Valgrind/Memcheck Output ===
+ms_print.*
+massif.*
+coverity
+TAGS
+
+# === Waf Lock/Cache Files ===
+.lock-waf_*_build
+.waf*
+
+
+# doxygen - normally doc but change name not to get confused with requed doc in src for building
+dox 
+
+# === Build Artifacts ===
+build-dir/
+build/

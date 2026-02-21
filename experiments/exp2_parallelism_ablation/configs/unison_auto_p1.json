@@ -1,0 +1,289 @@
+{
+  "network_type": "silo",
+  "description": "exp2_silo_unison_auto_p1",
+  "reproducibility": {
+    "round": 1,
+    "seed": 1
+  },
+  "sim": {
+    "simulation_time": 500,
+    "poll_ms": 100
+  },
+  "presets": {
+    "very_weak": {
+      "up_mbps": 40,
+      "down_mbps": 120,
+      "oneway_delay_ms": 35,
+      "loss": 0.0015
+    },
+    "weak": {
+      "up_mbps": 80,
+      "down_mbps": 250,
+      "oneway_delay_ms": 24,
+      "loss": 0.001
+    },
+    "basic": {
+      "up_mbps": 180,
+      "down_mbps": 600,
+      "oneway_delay_ms": 14,
+      "loss": 0.0004
+    },
+    "strong": {
+      "up_mbps": 500,
+      "down_mbps": 1800,
+      "oneway_delay_ms": 7,
+      "loss": 0.0001
+    },
+    "very_strong": {
+      "up_mbps": 1200,
+      "down_mbps": 5000,
+      "oneway_delay_ms": 3,
+      "loss": 3e-05
+    }
+  },
+  "network": {
+    "server_side": {
+      "server_link": {
+        "up_mbps": 5000,
+        "down_mbps": 12000,
+        "oneway_delay_ms": 1,
+        "loss": 0.0
+      },
+      "queue_disc": {
+        "type": "fq_codel"
+      },
+      "server_ap": {
+        "position": {
+          "x": 0,
+          "y": 30,
+          "z": 0
+        }
+      },
+      "server": {
+        "position": {
+          "x": 0,
+          "y": 50,
+          "z": 0
+        }
+      }
+    },
+    "clients": [
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -90,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -70,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -50,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -30,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -10,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 10,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 30,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 50,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 70,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 90,
+          "y": -20,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -90,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -70,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -50,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -30,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": -10,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 10,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 30,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 50,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 70,
+          "y": 0,
+          "z": 0
+        }
+      },
+      {
+        "preset": "very_strong",
+        "selected": true,
+        "position": {
+          "x": 90,
+          "y": 0,
+          "z": 0
+        }
+      }
+    ]
+  },
+  "fl_traffic": {
+    "transport": "tcp",
+    "model_size_mb": 10,
+    "sync_start_jitter_ms": 50,
+    "compute_s": 10,
+    "tcp": {
+      "socket_type": "ns3::TcpCubic",
+      "sack": true,
+      "snd_buf_bytes": 4194304,
+      "rcv_buf_bytes": 4194304,
+      "segment_size_bytes": 1448,
+      "app_send_size_bytes": 1448
+    }
+  },
+  "metrics": {
+    "flow_monitor": true,
+    "event_log": true,
+    "netanim": false
+  },
+  "orchestration": {
+    "rounds": 100,
+    "parallelism": 1,
+    "force": false,
+    "participation": {
+      "file": null,
+      "selection_pct": 0.4
+    },
+    "positioning": {
+      "mode": "explicit",
+      "std_m": 0.0
+    },
+    "unison": {
+      "enabled": true,
+      "threads": null
+    }
+  }
+}

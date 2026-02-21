@@ -1,0 +1,409 @@
+{
+  "network_type": "wifi",
+  "description": "exp1_wifi_very_weak",
+  "reproducibility": {
+    "round": 1,
+    "seed": 1
+  },
+  "sim": {
+    "simulation_time": 500,
+    "poll_ms": 100
+  },
+  "presets": {
+    "ap_quality_presets": {
+      "very_weak": {
+        "wifi_standard": "80211n",
+        "tx_power_dbm": 10
+      },
+      "weak": {
+        "wifi_standard": "80211n",
+        "tx_power_dbm": 14
+      },
+      "basic": {
+        "wifi_standard": "80211ac",
+        "tx_power_dbm": 18
+      },
+      "strong": {
+        "wifi_standard": "80211ax",
+        "tx_power_dbm": 22
+      },
+      "very_strong": {
+        "wifi_standard": "80211ax",
+        "tx_power_dbm": 25
+      }
+    },
+    "device_tiers": {
+      "very_weak": {
+        "tx_power_dbm": 10
+      },
+      "weak": {
+        "tx_power_dbm": 13
+      },
+      "basic": {
+        "tx_power_dbm": 17
+      },
+      "strong": {
+        "tx_power_dbm": 20
+      },
+      "very_strong": {
+        "tx_power_dbm": 23
+      }
+    },
+    "mobility_presets": {
+      "static": {
+        "model": "constant_position",
+        "speed_mps": 0.0,
+        "area_scale": 1.0
+      },
+      "slow": {
+        "model": "random_walk_2d",
+        "speed_mps": 0.4,
+        "area_scale": 1.5
+      },
+      "normal": {
+        "model": "random_walk_2d",
+        "speed_mps": 1.0,
+        "area_scale": 2.0
+      },
+      "fast": {
+        "model": "random_walk_2d",
+        "speed_mps": 2.0,
+        "area_scale": 2.5
+      }
+    }
+  },
+  "network": {
+    "wifi_manager": "ns3::MinstrelHtWifiManager",
+    "access_points": [
+      {
+        "ssid": "home-ap-0",
+        "ap_quality": "very_weak",
+        "position": {
+          "x": -20,
+          "y": 0,
+          "z": 1.5
+        }
+      },
+      {
+        "ssid": "home-ap-1",
+        "ap_quality": "very_weak",
+        "position": {
+          "x": 20,
+          "y": 0,
+          "z": 1.5
+        }
+      }
+    ],
+    "server_side": {
+      "access_link": {
+        "up_mbps": 1000,
+        "down_mbps": 1000,
+        "oneway_delay_ms": 2,
+        "loss": 0.0
+      },
+      "server_link": {
+        "up_mbps": 10000,
+        "down_mbps": 10000,
+        "oneway_delay_ms": 1,
+        "loss": 0.0
+      },
+      "server_ap": {
+        "position": {
+          "x": 0,
+          "y": 30,
+          "z": 0
+        }
+      },
+      "server": {
+        "position": {
+          "x": 0,
+          "y": 50,
+          "z": 0
+        }
+      }
+    },
+    "channel": {
+      "log_distance_exponent": 2.7,
+      "log_distance_reference_distance_m": 1.0,
+      "log_distance_reference_loss_db": 40.0
+    },
+    "clients": [
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -28,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -24,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -20,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -16,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -12,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -28,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -24,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -20,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -16,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": -12,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 28,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 24,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 20,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 16,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 12,
+          "y": -8,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 28,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 24,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 20,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 16,
+          "y": -4,
+          "z": 1.0
+        }
+      },
+      {
+        "ap": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 12,
+        "position": {
+          "x": 12,
+          "y": -4,
+          "z": 1.0
+        }
+      }
+    ]
+  },
+  "fl_traffic": {
+    "transport": "tcp",
+    "model_size_mb": 10,
+    "sync_start_jitter_ms": 50,
+    "compute_s": 10,
+    "tcp": {
+      "socket_type": "ns3::TcpCubic",
+      "sack": true,
+      "snd_buf_bytes": 4194304,
+      "rcv_buf_bytes": 4194304,
+      "segment_size_bytes": 1448,
+      "app_send_size_bytes": 1448
+    }
+  },
+  "metrics": {
+    "flow_monitor": true,
+    "event_log": true,
+    "netanim": false
+  },
+  "orchestration": {
+    "rounds": 5,
+    "parallelism": 5,
+    "force": false,
+    "participation": {
+      "file": null,
+      "selection_pct": 0.4
+    },
+    "positioning": {
+      "mode": "explicit",
+      "std_m": 0.0
+    },
+    "unison": {
+      "enabled": true,
+      "threads": null
+    }
+  }
+}

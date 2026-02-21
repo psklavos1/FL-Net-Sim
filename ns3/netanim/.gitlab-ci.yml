@@ -1,0 +1,87 @@
+stages:
+  - build
+  - packaging
+
+.base-build:
+  stage: build
+  image: ubuntu:22.04
+  script:
+    - apt update
+    - DEBIAN_FRONTEND=noninteractive apt install -y g++ ninja-build cmake $QT_LIBRARY_PACKAGE
+    - cmake -B cmake-cache
+    - cmake --build cmake-cache
+
+qt5-build:
+  extends: .base-build
+  variables:
+    QT_LIBRARY_PACKAGE: qtbase5-dev
+
+qt6-build:
+  extends: .base-build
+  variables:
+    QT_LIBRARY_PACKAGE: qt6-base-dev libglvnd-dev libqt6svg6-dev # qt6-svg-dev in newer ubuntu releases
+
+.packaging:
+  stage: packaging
+  script:
+    # DEPENDENCIES ARE INSTALLED ON EACH PACKAGING JOB, SINCE THEY ARE PLATFORM DEPENDENT
+    # Download qt6 and build it statically
+    - wget https://download.qt.io/official_releases/qt/$QT_VERSION/$QT_DOT_RELEASE/single/qt-everywhere-src-$QT_DOT_RELEASE.tar.xz --no-check-certificate
+    - tar xf qt-everywhere-src-$QT_DOT_RELEASE.tar.xz
+    - cd qt-everywhere-src-$QT_DOT_RELEASE
+    - mkdir build-static && cd build-static
+    - ../configure -static -no-shared -prefix ../../qt6static -opensource -confirm-license -release -submodules qtbase,qtsvg $PLUGINS -nomake examples -nomake tests
+    - cmake --build . --parallel
+    - cmake --install .
+    # Remove QT source
+    - cd ../../
+    - mkdir packages
+    - rm -R qt-everywhere-src-$QT_DOT_RELEASE
+    # Build and package netanim
+    - cmake -B cmake-cache -D CMAKE_BUILD_TYPE=release -D CMAKE_PREFIX_PATH=./qt6static -DPACKAGING=ON -DCMAKE_INSTALL_PREFIX=./tmp/netanim
+    - cd cmake-cache
+    - cmake --build ./
+    #- cpack
+  variables:
+    QT_VERSION: 6.9
+    QT_DOT_RELEASE: 6.9.2
+  artifacts:
+    paths:
+      - packages/*.zip
+      - packages/*.app
+    when: on_success
+
+packaging-linux:
+  extends: .packaging
+  image: ubuntu:22.04
+  before_script:
+    - apt update
+    - DEBIAN_FRONTEND=noninteractive apt install -y g++ ninja-build cmake wget xz-utils python3-dev libclang-dev libopengl-dev libegl1-mesa-dev zip
+    # X11 dependencies
+    - DEBIAN_FRONTEND=noninteractive apt install -y pkg-config libxcb-* libxkbcommon-x11-dev libxkbcommon-tools libfontconfig-dev
+    #  Wayland dependencies
+    #- DEBIAN_FRONTEND=noninteractive apt install -y libwayland-dev libwayland-egl-backend-dev libxkbcommon-dev libegl1-mesa-dev
+  after_script:
+    # AppImage dependencies
+    - wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+    - chmod +x linuxdeployqt-continuous-x86_64.AppImage
+    - ./linuxdeployqt-continuous-x86_64.AppImage --appimage-extract
+    # Install netanim, fix dependencies, and zip it
+    - cd cmake-cache
+    - cmake --install .
+    - cd ..
+    - ./squashfs-root/usr/bin/linuxdeployqt ./tmp/netanim/bin/netanim -bundle-non-qt-libs -always-overwrite -extra-plugins=libqsvgicon.so
+    - cd tmp/netanim
+    - zip -r ../../packages/Netanim-Linux.zip ./
+  variables:
+    PLUGINS: -xcb -fontconfig
+
+#packaging-macos:
+#  extends: .packaging
+#  tags:
+#    - saas-macos-medium-m1
+#  image: macos-14-xcode-15
+#
+#packaging-windows:
+#  extends: .packaging
+#  image: ubuntu:22.04

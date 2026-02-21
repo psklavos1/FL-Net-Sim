@@ -1,0 +1,227 @@
+{
+  "network_type": "lte",
+  "description": "cellular_lte",
+  "reproducibility": {
+    "round": 1,
+    "seed": 1
+  },
+  "sim": {
+    "simulation_time": 500,
+    "poll_ms": 100
+  },
+  "presets": {
+    "cell_quality_presets": {
+      "very_weak": {
+        "tx_power_dbm": 35,
+        "dl_bandwidth": 15,
+        "ul_bandwidth": 15
+      },
+      "weak": {
+        "tx_power_dbm": 38,
+        "dl_bandwidth": 25,
+        "ul_bandwidth": 25
+      },
+      "basic": {
+        "tx_power_dbm": 41,
+        "dl_bandwidth": 50,
+        "ul_bandwidth": 50
+      },
+      "strong": {
+        "tx_power_dbm": 44,
+        "dl_bandwidth": 75,
+        "ul_bandwidth": 75
+      },
+      "very_strong": {
+        "tx_power_dbm": 46,
+        "dl_bandwidth": 100,
+        "ul_bandwidth": 100
+      }
+    },
+    "device_tiers": {
+      "very_weak": {
+        "tx_power_dbm": 8,
+        "noise_figure_db": 11
+      },
+      "weak": {
+        "tx_power_dbm": 12,
+        "noise_figure_db": 10
+      },
+      "basic": {
+        "tx_power_dbm": 16,
+        "noise_figure_db": 9
+      },
+      "strong": {
+        "tx_power_dbm": 20,
+        "noise_figure_db": 7
+      },
+      "very_strong": {
+        "tx_power_dbm": 23,
+        "noise_figure_db": 5
+      }
+    },
+    "mobility_presets": {
+      "static": {
+        "model": "constant_position",
+        "speed_mps": 0.0,
+        "area_scale": 1.0
+      },
+      "slow": {
+        "model": "random_walk_2d",
+        "speed_mps": 2.0,
+        "area_scale": 1.5
+      },
+      "normal": {
+        "model": "random_walk_2d",
+        "speed_mps": 5.0,
+        "area_scale": 2.0
+      },
+      "fast": {
+        "model": "random_walk_2d",
+        "speed_mps": 10.0,
+        "area_scale": 2.5
+      }
+    }
+  },
+  "network": {
+    "server_side": {
+      "server_ap": {
+        "position": {
+          "x": 0,
+          "y": 200,
+          "z": 10
+        }
+      },
+      "server": {
+        "position": {
+          "x": 20,
+          "y": 200,
+          "z": 0
+        }
+      },
+      "entry_link": {
+        "up_mbps": 1000,
+        "down_mbps": 1000,
+        "oneway_delay_ms": 5,
+        "loss": 0.0
+      },
+      "server_link": {
+        "up_mbps": 5000,
+        "down_mbps": 12000,
+        "oneway_delay_ms": 1,
+        "loss": 0.0
+      }
+    },
+    "channel": {
+      "pathloss_model": "ns3::LogDistancePropagationLossModel",
+      "log_distance_exponent": 2.9,
+      "log_distance_reference_distance_m": 1.0,
+      "log_distance_reference_loss_db": 38.5
+    },
+    "enbs": [
+      {
+        "name": "enb-0",
+        "cell_quality": "strong",
+        "position": {
+          "x": -180,
+          "y": 0,
+          "z": 15
+        }
+      },
+      {
+        "name": "enb-1",
+        "cell_quality": "strong",
+        "position": {
+          "x": 180,
+          "y": 0,
+          "z": 15
+        }
+      }
+    ],
+    "clients": [
+      {
+        "enb": 0,
+        "device_tier": "very_strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 40
+      },
+      {
+        "enb": 0,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 70
+      },
+      {
+        "enb": 0,
+        "device_tier": "basic",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 110
+      },
+      {
+        "enb": 1,
+        "device_tier": "strong",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 60
+      },
+      {
+        "enb": 1,
+        "device_tier": "basic",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 100
+      },
+      {
+        "enb": 1,
+        "device_tier": "weak",
+        "selected": true,
+        "mobility_preset": "static",
+        "radius_m": 140
+      }
+    ]
+  },
+  "fl_traffic": {
+    "transport": "tcp",
+    "model_size_mb": 20,
+    "sync_start_jitter_ms": 50,
+    "compute_s": 4,
+    "tcp": {
+      "socket_type": "ns3::TcpCubic",
+      "sack": true,
+      "snd_buf_bytes": 16777216,
+      "rcv_buf_bytes": 16777216,
+      "segment_size_bytes": 1448,
+      "app_send_size_bytes": 1448
+    }
+  },
+  "lte": {
+    "scheduler": "ns3::PfFfMacScheduler",
+    "rlc_mode": "am",
+    "rlc_buffer_bytes": 33554432,
+    "use_ideal_rrc": true,
+    "use_ca": true,
+    "num_component_carriers": 2,
+    "enable_uplink_power_control": true,
+    "attach_mode": "configured"
+  },
+  "metrics": {
+    "flow_monitor": true,
+    "event_log": true,
+    "netanim": false
+  },
+  "orchestration": {
+    "rounds": 3,
+    "parallelism": 2,
+    "force": false,
+    "participation": {
+      "file": null,
+      "selection_pct": 0.5
+    },
+    "positioning": {
+      "mode": "radius",
+      "std_m": 0.0
+    }
+  }
+}

@@ -1,0 +1,4 @@
+round,training_time_s,accuracy
+1,12.6,0.72
+2,12.2,0.75
+3,12.9,0.77

@@ -1,0 +1,10 @@
+cmake
+ninja
+numpy
+pytest
+pandas
+tqdm
+pyyaml
+matplotlib
+jq
+tabulate

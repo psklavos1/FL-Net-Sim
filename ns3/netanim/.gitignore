@@ -1,0 +1,16 @@
+*.patch
+*.diff
+*.orig
+*.rej
+*.swp
+
+*.o
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_qtpropertybrowser.cpp
+qrc_resources.cpp
+.qmake.stash
+
+Makefile
+NetAnim

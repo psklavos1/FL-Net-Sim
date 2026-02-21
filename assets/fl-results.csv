@@ -1,0 +1,4 @@
+round,training_time_s,val_accuracy,loss
+1,12.5,0.71,1.20
+2,12.1,0.74,1.05
+3,12.8,0.76,0.98
